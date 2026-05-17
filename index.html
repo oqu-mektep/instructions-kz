@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OQU нұсқаулығы</title>
+    <style>
+        :root {
+            --primary: #0045E6;
+            --primary-light: #edf2ff;
+            --bg: #f4f7f6;
+            --text: #333;
+            --faq-border: #0045E6;
+            --faq-bg: #f8fafc;
+            --notice-bg: #e8f5e9;
+            --notice-border: #4caf50;
+        }
+
+        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+
+        /* ЭКРАН 1 */
+        .hero-section {
+            background-color: var(--primary);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .btn-main {
+            display: inline-block;
+            padding: 18px 45px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 900;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        /* ЭКРАН 2 */
+        .intro-section {
+            background-color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .intro-text {
+            font-size: 2.2rem;
+            line-height: 1.4;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 40px;
+        }
+
+        .btn-next-step {
+            padding: 18px 50px;
+            font-size: 1.1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        /* МАКЕТ */
+        .main-layout { display: flex; min-height: 100vh; }
+
+        /* САЙДБАР */
+        .sidebar {
+            width: 320px;
+            background: white;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 20px 15px;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .sidebar-part-title {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 6px 10px;
+            border-radius: 50px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            transition: all 0.2s ease;
+        }
+        .sidebar-nav-link::after {
+            content: '→';
+            font-weight: bold;
+            opacity: 0.4;
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+        .sidebar-nav-link:hover {
+            color: var(--primary);
+            background: #fafafa;
+            border-color: var(--primary);
+            transform: translateX(3px);
+            box-shadow: 0 2px 6px rgba(0, 69, 230, 0.04);
+        }
+        .sidebar-nav-link:hover::after {
+            opacity: 1;
+            transform: translateX(2px);
+        }
+
+        .sidebar-faq-box {
+            margin-top: auto;
+            padding: 12px 10px;
+            background: #f8fafc;
+            border: 2px dashed var(--primary);
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.2s;
+        }
+        .sidebar-faq-box a { 
+            font-weight: 800; 
+            color: var(--primary) !important; 
+            font-size: 0.9rem; 
+            text-decoration: none; 
+            text-transform: uppercase; 
+            display: block;
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .content { flex: 1; padding: 50px; max-width: 900px; }
+
+        .white-box {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+        }
+
+        .part-header-box {
+            background: var(--primary-light);
+            border: 2px solid var(--primary);
+            padding: 25px 35px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 69, 230, 0.05);
+        }
+        .part-header-box h2 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .page-break-block {
+            page-break-before: always;
+            break-before: page;
+            margin-top: 20px;
+        }
+
+        .step-title {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 15px;
+        }
+        .step-label { color: var(--primary); font-weight: 900; white-space: nowrap; }
+
+        .green-notice {
+            background-color: var(--notice-bg);
+            border: 2px solid var(--notice-border);
+            border-radius: 12px;
+            padding: 20px 20px 20px 55px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #2e7d32;
+            position: relative;
+        }
+        .green-notice::before {
+            content: "!";
+            position: absolute;
+            left: 18px;
+            top: 20px;
+            width: 22px;
+            height: 22px;
+            background-color: #2e7d32;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .green-notice p { margin: 0; }
+        .green-notice p:not(:last-child) { margin-bottom: 10px; }
+
+        .blue-notice {
+            background-color: var(--primary-light);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #1e3a8a;
+        }
+        .blue-notice p { margin: 0; }
+        .blue-notice p:not(:last-child) { margin-bottom: 10px; }
+
+        .step-auth { margin-bottom: 35px; padding-left: 45px; position: relative; }
+        .step-auth::before {
+            content: attr(data-step);
+            position: absolute; left: 0; top: 0;
+            width: 28px; height: 28px;
+            background: var(--primary); color: white;
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 0.9rem; font-weight: bold;
+        }
+
+        .instruction-img { width: 100%; border-radius: 10px; margin: 15px 0; border: 1px solid #eee; display: block; }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            margin-top: 15px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content-next-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .content-next-btn:hover {
+            box-shadow: 0 4px 12px rgba(0, 69, 230, 0.2);
+        }
+        
+        .step-footer-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            opacity: 0.9;
+        }
+        .step-footer-btn:hover {
+            opacity: 1;
+            box-shadow: 0 2px 8px rgba(0,69,230,0.2);
+        }
+
+        /* FAQ STYLE */
+        .faq-box {
+            background: var(--faq-bg) !important;
+            border: 1px solid #e2e8f0;
+        }
+        .faq-title-main {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0;
+        }
+        .faq-category-title { 
+            color: #475569; 
+            border-bottom: 2px solid #e2e8f0; 
+            padding-bottom: 5px; 
+            margin: 30px 0 15px 0; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+        }
+        details { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid var(--faq-border); box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+        summary { font-weight: bold; cursor: pointer; outline: none; color: #1e293b; }
+        .faq-ans { padding-top: 15px; font-size: 0.95rem; line-height: 1.6; color: #475569; }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <div style="max-width: 850px; padding: 20px;">
+            <h1 style="font-size: 2.5rem; font-weight: 800;">Құрметті орта білім берегу ұйымдарының қызметкерлері!</h1>
+            <p style="font-size: 1.4rem; opacity: 0.9;">1-сыныпқа құжаттарды қабылдау жөніндегі бұл нұсқаулық мектеп директорлары мен қызметкерлеріне арналған. Мұнда платформаны пайдалануға байланысты барлық сұрақтарға жауаптар берілген.</p>
+            <a href="#intro" class="btn-main">КЕЛЕСІ</a>
+        </div>
+    </section>
+
+    <section id="intro" class="intro-section">
+        <div style="max-width: 900px;">
+            <div class="intro-text">
+                Ең алдымен мектеп директоры платформада жеке кабинетін дайындап алуы тиіс. <br> 
+                <span style="color: var(--primary);">Ол үшін осы нұсқаулықтың дайындық өтіңіз.</span>
+            </div>
+            <img src="k1.png" class="instruction-img" style="max-width: 600px; margin: 0 auto 30px auto;">
+            <br>
+            <a href="#guide-start" class="btn-next-step">БАСТАУ</a>
+        </div>
+    </section>
+
+    <div class="main-layout" id="guide-start">
+        
+        <div class="sidebar">
+            <div>
+                <div class="sidebar-part-title">⚙️ I-бөлім. Өтінімдерді қабылдауға дайындық</div>
+                <a href="#step1" class="sidebar-nav-link">Авторизация</a>
+                <a href="#step2" class="sidebar-nav-link">Орындаушы және ОБҰ қызметкерлерін қосу</a>
+                <a href="#step3" class="sidebar-nav-link">Сыныптардың лимитін тексеру және өңдеу</a>
+                <a href="#step4" class="sidebar-nav-link">Шағын ауданды тексеру және өңдеу</a>
+                
+                <div class="sidebar-part-title">📋 II-бөлім. Өтінімдерді қалай өңдеу керек?</div>
+                <a href="#step5" class="sidebar-nav-link">Өтінімдерді тексеру</a>
+                <a href="#step6" class="sidebar-nav-link">Өтінімдерге қол қою</a>
+
+                <div class="sidebar-part-title">👨‍👩‍👦 III-бөлім. Ата-ана тарапынан өтінім беру</div>
+                <a href="#part3" class="sidebar-nav-link">Ата-ана тарапынан беру</a>
+            </div>
+            
+            <div class="sidebar-faq-box">
+                <a href="#questions">❔ Жиі қойылатын сұрақтар</a>
+            </div>
+        </div>
+
+        <div class="content">
+            ```
+
+Келесі мәтіндерді күтемін!

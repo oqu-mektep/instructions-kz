@@ -1,74 +1,653 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OQU Платформасы: Жиі қойылатын сұрақтар (FAQ)</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>OQU нұсқаулығы</title>
     <style>
-        body {
-            font-family: 'Noto Sans', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+        :root {
+            --primary: #0045E6;
+            --primary-light: #edf2ff;
+            --bg: #f4f7f6;
+            --text: #333;
+            --faq-border: #0045E6;
+            --faq-bg: #f8fafc;
+            --notice-bg: #e8f5e9;
+            --notice-border: #4caf50;
         }
-        .faq-header {
-            background: linear-gradient(135deg, #0d6efd 0%, #0046b5 100%);
+
+        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+
+        /* ЭКРАН 1 */
+        .hero-section {
+            background-color: var(--primary);
             color: white;
-            padding: 40px 20px;
-            border-radius: 0 0 20px 20px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .btn-main {
+            display: inline-block;
+            padding: 18px 45px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 900;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* ЭКРАН 2 & ЭКРАН 3 */
+        .intro-section {
+            background-color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .intro-text {
+            font-size: 2.2rem;
+            line-height: 1.4;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 40px;
+        }
+
+        .btn-next-step {
+            padding: 18px 50px;
+            font-size: 1.1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            display: inline-block;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .btn-next-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 69, 230, 0.3);
+        }
+
+        /* МАКЕТ */
+        .main-layout { display: flex; min-height: 100vh; }
+
+        /* САЙДБАР */
+        .sidebar {
+            width: 320px;
+            background: white;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 20px 15px;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .sidebar-part-title {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 6px 10px;
+            border-radius: 50px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            transition: all 0.2s ease;
+        }
+        .sidebar-nav-link::after {
+            content: '→';
+            font-weight: bold;
+            opacity: 0.4;
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+        .sidebar-nav-link:hover {
+            color: var(--primary);
+            background: #fafafa;
+            border-color: var(--primary);
+            transform: translateX(3px);
+            box-shadow: 0 2px 6px rgba(0, 69, 230, 0.04);
+        }
+        .sidebar-nav-link:hover::after {
+            opacity: 1;
+            transform: translateX(2px);
+        }
+
+        .sidebar-faq-box {
+            margin-top: auto;
+            padding: 12px 10px;
+            background: #f8fafc;
+            border: 2px dashed var(--primary);
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.2s;
+        }
+        .sidebar-faq-box a { 
+            font-weight: 800; 
+            color: var(--primary) !important; 
+            font-size: 0.9rem; 
+            text-decoration: none; 
+            text-transform: uppercase; 
+            display: block;
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .content { flex: 1; padding: 50px; max-width: 900px; box-sizing: border-box; }
+
+        .white-box {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+        }
+
+        .part-header-box {
+            background: var(--primary-light);
+            border: 2px solid var(--primary);
+            padding: 25px 35px;
+            border-radius: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 69, 230, 0.05);
         }
-        .accordion-item {
-            border-radius: 10px !important;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e0e0e0;
-            overflow: hidden;
+        .part-header-box h2 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        .accordion-button:not(.collapsed) {
-            background-color: #e7f1ff;
-            color: #0d6efd;
-            font-weight: 600;
+
+        .step-title {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 15px;
         }
-        .accordion-button {
-            font-weight: 600;
-            padding: 18px 20px;
+        .step-label { color: var(--primary); font-weight: 900; white-space: nowrap; }
+
+        .green-notice {
+            background-color: var(--notice-bg);
+            border: 2px solid var(--notice-border);
+            border-radius: 12px;
+            padding: 20px 20px 20px 55px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #2e7d32;
+            position: relative;
         }
-        .category-title {
-            color: #0d6efd;
+        .green-notice::before {
+            content: "!";
+            position: absolute;
+            left: 18px;
+            top: 20px;
+            width: 22px;
+            height: 22px;
+            background-color: #2e7d32;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .green-notice p { margin: 0; }
+        .green-notice p:not(:last-child) { margin-bottom: 10px; }
+
+        .blue-notice {
+            background-color: var(--primary-light);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #1e3a8a;
+        }
+        .blue-notice p { margin: 0; }
+        .blue-notice p:not(:last-child) { margin-bottom: 10px; }
+
+        .step-auth { margin-bottom: 35px; padding-left: 45px; position: relative; }
+        .step-auth::before {
+            content: attr(data-step);
+            position: absolute; left: 0; top: 0;
+            width: 28px; height: 28px;
+            background: var(--primary); color: white;
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 0.9rem; font-weight: bold;
+        }
+
+        .instruction-img { width: 100%; border-radius: 10px; margin: 15px 0; border: 1px solid #eee; display: block; }
+
+        .content-next-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .content-next-btn:hover {
+            box-shadow: 0 4px 12px rgba(0, 69, 230, 0.2);
+        }
+        
+        .step-footer-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 8px;
             font-weight: 700;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            border-left: 4px solid #0d6efd;
-            padding-left: 10px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            opacity: 0.9;
         }
-        .alert-warning-custom {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            color: #664d03;
+        .step-footer-btn:hover {
+            opacity: 1;
+            box-shadow: 0 2px 8px rgba(0,69,230,0.2);
         }
-        .alert-danger-custom {
-            background-color: #f8d7da;
-            border-left: 4px solid #dc3545;
-            color: #842029;
+
+        /* FAQ STYLE */
+        .faq-box {
+            background: var(--faq-bg) !important;
+            border: 1px solid #e2e8f0;
         }
+        .faq-title-main {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0;
+        }
+        .faq-category-title { 
+            color: #475569; 
+            border-bottom: 2px solid #e2e8f0; 
+            padding-bottom: 5px; 
+            margin: 30px 0 15px 0; 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+        }
+        details { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid var(--faq-border); box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+        summary { font-weight: bold; cursor: pointer; outline: none; color: #1e293b; }
+        .faq-ans { padding-top: 15px; font-size: 0.95rem; line-height: 1.6; color: #475569; }
     </style>
 </head>
 <body>
 
-<div class="container" style="max-width: 900px;">
-    
-    <div class="faq-header text-center">
-        <h1 class="fw-bold">OQU платформасы</h1>
-        <p class="lead mb-0">Мектеп әкімшілігі мен қолдау көрсету мамандарына арналған жиі қойылатын сұрақтар (FAQ)</p>
-    </div>
+    <section class="hero-section">
+        <div style="max-width: 850px; padding: 20px;">
+            <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">Құрметті орта білім беру ұйымдарының қызметкерлері!</h1>
+            <p style="font-size: 1.4rem; opacity: 0.9; line-height: 1.6;">1-сыныпқа құжаттарды қабылдау жөніндегі бұл нұсқаулық мектеп директорлары мен қызметкерлеріне арналған. Мұнда платформаны пайдалануға байланысты барлық сұрақтарға жауаптар берілген.</p>
+            <a href="#page2" class="btn-main">КЕЛЕСІ</a>
+        </div>
+    </section>
 
-    <div class="mb-5">
+    <section id="page2" class="intro-section" style="background-color: #f8fafc;">
+        <div style="max-width: 900px;">
+            <div class="intro-text">
+                Ең алдымен мектеп директоры платформада жеке кабинетін дайындап алуы тиіс. <br> 
+                <span style="color: var(--primary);">Ол үшін осы нұсқаулықтың дайындық бөлімінен өтіңіз.</span>
+            </div>
+            <a href="#page3" class="btn-next-step">АЛҒА →</a>
+        </div>
+    </section>
 
-        <h3 class="category-title">Кіру және авторизация</h3>
-        <div class="accordion" id="authAccordion">
+    <section id="page3" class="intro-section">
+        <div style="max-width: 900px;">
+            <div class="intro-text" style="font-size: 1.8rem; margin-bottom: 20px;">
+                Платформаның басты интерфейсіне шолу:
+            </div>
+            <div style="margin: 0 auto 30px auto; max-width: 750px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 12px; overflow: hidden;">
+                <img src="k1.png" class="instruction-img" style="margin: 0; border: none;" alt="k1.png">
+            </div>
+            <a href="#guide-start" class="btn-next-step" style="background-color: #2e7d32;">БАСТАУ</a>
+        </div>
+    </section>
+
+    <div class="main-layout" id="guide-start">
+        
+        <div class="sidebar">
+            <div>
+                <div class="sidebar-part-title">⚙️ I-бөлім. Өтінімдерді қабылдауға дайындық</div>
+                <a href="#step1" class="sidebar-nav-link">Авторизация</a>
+                <a href="#step2" class="sidebar-nav-link">Орындаушы және ОБҰ қызметкерлерін қосу</a>
+                <a href="#step3" class="sidebar-nav-link">Сыныптардың лимитін тексеру</a>
+                <a href="#step4" class="sidebar-nav-link">Шағын ауданды тексеру және өңдеу</a>
+                
+                <div class="sidebar-part-title">📋 II-бөлім. Өтінімдерді қалай өңдеу керек?</div>
+                <a href="#step5" class="sidebar-nav-link">Өтінімдерді тексеру</a>
+                <a href="#step6" class="sidebar-nav-link">Өтінімдерге қол қою</a>
+
+                <div class="sidebar-part-title">👨‍👩‍👦 III-бөлім. Ата-ана тарапынан өтінім беру</div>
+                <a href="#part3" class="sidebar-nav-link">Ата-ана тарапынан беру</a>
+            </div>
+            
+            <div class="sidebar-faq-box">
+                <a href="#questions">❔ Жиі қойылатын сұрақтар</a>
+            </div>
+        </div>
+
+        <div class="content">
+            
+            <div class="white-box">
+                <p style="font-size: 1.2rem; line-height: 1.6; font-weight: 600; color: #1e293b; margin-top: 0;">
+                    1-сыныпқа түсуге өтінімдерді қабылдау тек oqu.edu.kz платформасында жүзеге асырылады.
+                </p>
+            </div>
+
+            <div class="part-header-box" id="part1-title">
+                <h2>⚙️ I-бөлім. Өтінімдерді қабылдауға дайындық</h2>
+            </div>
+
+            <div class="white-box">
+                <div class="green-notice">
+                    <p>Өтінімдерді дұрыс қабылдау үшін осы бөлімде көрсетілген әрекеттерді міндетті түрде орындау қажет. Бұл қадамдарды мектеп директоры орындайды.</p>
+                </div>
+                <div class="blue-notice">
+                    <p>📹 <b>Видеоның сілтемесі:</b> [Бұл жерге видео сілтемесін қойыңыз]</p>
+                </div>
+            </div>
+
+            <div class="white-box" id="step1">
+                <div class="step-title"><span class="step-label">1.</span><span>Авторизация</span></div>
+                
+                <div class="step-auth" data-step="1">
+                    <p>oqu.edu.kz сілтемесі арқылы өтіп, «Кіру» батырмасын басыңыз.</p>
+                    <img src="k2.png" class="instruction-img" alt="k2.png">
+                </div>
+
+                <div class="step-auth" data-step="2">
+                    <p>Порталға көрсетілген тәсілдердің бірі арқылы кіріңіз. Директор жеке тұлғаның ЭЦҚ-сы арқылы да, заңды тұлғаның ЭЦҚ-сы арқылы да кіре алады. Алайда, өтінімдерге қол қою үшін міндетті түрде заңды тұлғаның ЭЦҚ-сы талап етілетінін ескеріңіз.</p>
+                    <img src="k3.png" class="instruction-img" alt="k3.png">
+                </div>
+
+                <div class="step-auth" data-step="3">
+                    <p>Егер сіз ЭЦҚ арқылы кірген болсаңыз, Мобильді азаматтар базасында тіркелген нөміріңізге бес таңбалы коды бар SMS келеді. Оны енгізіп, «Жүйеге кіру» батырмасын басыңыз. Жүйеге ЭЦҚ арқылы әр кірген сайын сізге осы код жіберіледі.</p>
+                    <img src="k4.png" class="instruction-img" alt="k4.png">
+                </div>
+
+                <div class="step-auth" data-step="4">
+                    <p>«Рұқсат беру» батырмасын басыңыз.</p>
+                    <img src="k5.png" class="instruction-img" alt="k5.png">
+                </div>
+
+                <div class="step-auth" data-step="5">
+                    <p>Жеке деректерді жинауға және өңдеуге келісіміңізді беріңіз.</p>
+                    <p>Мобильді азаматтар базасында тіркелген нөміріңізге 1414 нөмірінен SMS келеді, оған 511 мәтінімен жауап беру қажет.</p>
+                    <p><b>Жауапты SMS келген SIM-картадан жіберіп жатқаныңызға көз жеткізіңіз.</b></p>
+                    
+                    <div style="display: flex; gap: 15px; margin: 15px 0;">
+                        <img src="k6.png" class="instruction-img" style="flex: 1; margin: 0; width: 50%;" alt="k6.png">
+                        <img src="k7.png" class="instruction-img" style="flex: 1; margin: 0; width: 50%;" alt="k7.png">
+                    </div>
+                </div>
+
+                <div style="text-align: right; margin-top: 20px;">
+                    <a href="#step2" class="step-footer-btn">Келесі: 2-қадам →</a>
+                </div>
+            </div>
+
+            <div class="white-box" id="step2">
+                <div class="step-title"><span class="step-label">2.</span><span>Орындаушы және ОБҰ қызметкерлерін қосу (Директор орындауы тиіс)</span></div>
+                
+                <div class="green-notice">
+                    <p>Директор қызметкерлерді қоспай-ақ өтінімдерді өз бетінше өңдей алады. Дегенмен, көп жағдайда өңдеумен басқа да қызметкерлер айналысады, сондықтан оларды алдын ала қосу қажет.</p>
+                    <p>Паспорттаумен айналысатын (шағын аудандар мен лимиттерді тексеретін) и өтінімдер бойынша шешім қабылдайтын қызметкерлерді алдын ала анықтап алыңыз.</p>
+                </div>
+
+                <div class="step-auth" data-step="1">
+                    <p>«Қызметкерлер» бөліміне өтіп, «Қосу» батырмасын басыңыз.</p>
+                    <img src="k8.png" class="instruction-img" alt="k8.png">
+                </div>
+
+                <div class="step-auth" data-step="2">
+                    <p>Қызметкердің ЖСН-ін енгізіп, «Жіберу» батырмасын басыңыз.</p>
+                    <img src="k9.png" class="instruction-img" alt="k9.png">
+                </div>
+
+                <div class="step-auth" data-step="3">
+                    <p>Қызметкердің нөміріне 1414 нөмірінен SMS келеді. Одан хабарламаға жауап беруін сұраңыз. Осыдан кейін «Келесі» батырмасын басыңыз.</p>
+                    <div style="display: flex; gap: 15px; margin: 15px 0;">
+                        <img src="k10.png" class="instruction-img" style="flex: 1; margin: 0; width: 50%;" alt="k10.png">
+                        <img src="k11.png" class="instruction-img" style="flex: 1; margin: 0; width: 50%;" alt="k11.png">
+                    </div>
+                </div>
+
+                <div class="step-auth" data-step="4">
+                    <p>Ары қарай қызметкерге Орындаушы немесе ОБҰ қызметкері рөлдерінің бірін тағайындаңыз (екі рөлді қатар тағайындауға да болады).</p>
+                    <p>ОБҰ қызметкері лимит пен шағын ауданды түзетуге жауап береді, ал Орындаушы өтінімдерді өңдеумен айналысады.</p>
+                    <img src="k12.png" class="instruction-img" alt="k12.png">
+                </div>
+
+                <div class="step-auth" data-step="5">
+                    <p>«Сақтау» батырмасын басыңыз.</p>
+                </div>
+                
+                <div style="text-align: right; margin-top: 20px;">
+                    <a href="#step3" class="step-footer-btn">Келесі: 3-қадам →</a>
+                </div>
+            </div>
+
+            <div class="white-box" id="step3">
+                <div class="step-title"><span class="step-label">3.</span><span>Сыныптардың лимиттерін тексеру және өңдеу (Директор және Орындаушы өңдей алады)</span></div>
+                
+                <div class="green-notice">
+                    <p>Сынып лимиттері (бос орындар саны) мектепті, сыныпты, оқыту тілін және ағымдағы оқу жылын ескере отырып, әр параллель үшін бөлек анықталады.</p>
+                    <p><b>Орындарды бөлу ережелері:</b><br>
+                    • Шағын ауданнан тыс өтінім бергендерге жалпы орындар санының төрттен бір бөлігі бөлінеді.<br>
+                    • Қалған орындар тіркелген мекенжайы бойынша мектепке қарасты өтінім жібергендерге, яғни шағын аудан бойынша беріледі.</p>
+                    <p><i>Мысалы: егер сыныпта барлығы 40 орын болса, онда 10 орын шағын ауданнан тыс өтінім бергендерге, ал 30 орын шағын аудан бойынша өтінім бергендерге бөлінеді.</i></p>
+                    <p><b>Назар аударыңыз:</b> Барлық мәліметтер Ұлттық білім беру деректер қорынан (ҰБДҚ 2.0) автоматты түрде жүктеледі. Қажет болған жағдайда сыныптарыңыздың лимиттерін алдын ала тексеруіңізді сұраймыз.</p>
+                </div>
+
+                <div class="step-auth" data-step="1">
+                    <p>Жеке кабинетіңізге кіріп, «Менің ұйымым» → «Сыныптардың лимиттері» бөліміне өтіңіз. Бөлімге мына сілтеме арқылы өте аласыз: <a href="https://oqu.edu.kz/organization/class-limits" target="_blank" style="color: var(--primary); font-weight: bold; text-decoration: underline;">https://oqu.edu.kz/organization/class-limits</a></p>
+                    <p>Бұл бөлімде сіз жалпы орындар және сыныптар санын көре аласыз.</p>
+                    <img src="k13.png" class="instruction-img" alt="k13.png">
+                </div>
+
+                <div class="step-auth" data-step="2">
+                    <p>Қажетті сыныпты таңдап, «Өңдеу» белгішесін басыңыз.</p>
+                    <img src="k14.png" class="instruction-img" alt="k14.png">
+                </div>
+
+                <div class="step-auth" data-step="3">
+                    <p>Орындар саны бойынша өзгеріс енгізіп, «Сақтау» батырмасын басыңыз. Әрбір оқыту тілі бойынша жеке параллель құрылады.</p>
+                    <img src="k15.png" class="instruction-img" alt="k15.png">
+                </div>
+
+                <div class="step-auth" data-step="4">
+                    <p>Қажет болған жағдайда жаңа лимит қоса аласыз. Ол үшін «Қосу» батырмасын басыңыз. Ары қарай оқыту тілін таңдап, сыныптар санын және сыныптағы орын санын көрсетіңіз. Оқыту тілдері ҰБДҚ 2.0 жүйесінен автоматты түрде жүктеледі.</p>
+                    <img src="k16.png" class="instruction-img" alt="k16.png">
+                </div>
+
+                <div class="step-auth" data-step="5">
+                    <p>Өзгерістер енгізіп, «Сақтау» батырмасын басыңыз.</p>
+                    <img src="k17.png" class="instruction-img" alt="k17.png">
+                </div>
+                
+                <div style="text-align: right; margin-top: 20px;">
+                    <a href="#step4" class="step-footer-btn">Келесі: 4-қадам →</a>
+                </div>
+            </div>
+
+            <div class="white-box" id="step4">
+                <div class="step-title"><span class="step-label">4.</span><span>Шағын ауданды тексеру және өңдеу (Директор орындауы тиіс)</span></div>
+                
+                <div class="step-auth" data-step="1">
+                    <p>«Менің ұйымым» → «Шағын аудан» бөліміне өтіңіз.</p>
+                    <img src="k18.png" class="instruction-img" alt="k18.png">
+                </div>
+
+                <div class="step-auth" data-step="2">
+                    <p>Бұл бөлімде сіздің ұйымыңызға бекітілген шағын ауданның мекен-жайлары көрсетіледі. Жаңа мекен-жай қосу үшін «Мекен-жай қосу» батырмасын басыңыз.</p>
+                    <img src="k19.png" class="instruction-img" alt="k19.png">
+                </div>
+
+                <div class="step-auth" data-step="3">
+                    <p>Ашылған бетте көшенің атын енгізіп, «Іздеу» батырмасын басыңыз. Төменде көрсетілген тізімнен қажетті мекен-жайды таңдаңыз.</p>
+                    <p>Кейін «Тіркеу» батырмасын басыңыз. Сіз бірнеше мекен-жайды тіркей аласыз.</p>
+                    <img src="k20.png" class="instruction-img" alt="k20.png">
+                </div>
+
+                <div class="step-auth" data-step="4">
+                    <p>Мекенжайды өшіру үшін «Босату» батырмасын басыңыз.</p>
+                    <img src="k21.png" class="instruction-img" alt="k21.png">
+                </div>
+
+                <div style="margin-top: 30px; text-align: right;">
+                    <a href="#part2-title" class="content-next-btn">Келесі: II-бөлімге көшу →</a>
+                </div>
+            </div>
+
+            <div class="part-header-box" id="part2-title">
+                <h2>📋 II-бөлім. Өтінімдерді қалай өңдеу керек?</h2>
+            </div>
+
+            <div class="white-box">
+                <div class="blue-notice">
+                    <p>📹 <b>Видеоның сілтемесі:</b> [Бұл жерге видео сілтемесін қойыңыз]</p>
+                    <p>Өтінімдерді өңдеуге кіріспес бұрын, нұсқаулықтағы дайындық әрекеттерін орындағаныңызға көз жеткізіңіз.</p>
+                    <p>Кейін өтінімдерді өңдеуді бастай беруге болады, ол үшін төмендегі қадамдарды орындаңыз:</p>
+                </div>
+            </div>
+
+            <div class="white-box" id="step5">
+                <div class="step-title"><span class="step-label">1.</span><span>Өтінімдерді тексеру (Орындаушы)</span></div>
+                
+                <div class="green-notice">
+                    <p><b>Маңызды мерзімдер:</b> Өтінім түскен сәттен бастап 1 жұмыс күні ішінде қаралуы тиіс.</p>
+                    <p><i>Мысалы: өтінім бейсенбі күні сағат 12:30-да берілсе, жұма күні сағат 12:30-ға дейін өтінім қаралып, шешім шығарылуы тиіс.</i></p>
+                    <p>Егер өтінім жұмыс күнінің аяқталуынан кейін, демалыс немесе мереке күні түссе, мерзімі келесі жұмыс күнінен бастап есептеледі. Мерзімі өткен өтінімдер «Мерзімі өткен» деп белгіленеді.</p>
+                </div>
+
+                <div class="step-auth" data-step="1">
+                    <p>Платформаға «Орындаушы» рөлінде кіріңіз.</p>
+                    <p>«Мемлекеттік қызметтер» → «Өңделмеген өтінімдер» бөліміне өтіңіз: <a href="https://oqu.edu.kz/organization/gov-services" target="_blank" style="color: var(--primary); font-weight: bold; text-decoration: underline;">https://oqu.edu.kz/organization/gov-services</a></p>
+                    <img src="k22.png" class="instruction-img" alt="k22.png">
+                </div>
+
+                <div class="step-auth" data-step="2">
+                    <p>Өтінім қатарындағы көз белгісін басып, өтінім картасын ашыңыз. «Қабылдау» немесе «Бас тарту» туралы шешім қабылдаңыз.</p>
+                    <img src="k23.png" class="instruction-img" alt="k23.png">
+                </div>
+
+                <div class="step-auth" data-step="3">
+                    <p>Өтінімді қабылдау үшін «Қабылдау» батырмасын басыңыз. Өтінім «Қабылданды» мәртебесіне ауысады.</p>
+                    <img src="k24.png" class="instruction-img" alt="k24.png">
+                </div>
+
+                <div class="step-auth" data-step="4">
+                    <p>Өтінімді қабылдаудан бас тарту үшін «Бас тарту» батырмасын басып, себебін белгілеңіз. «Растау және жіберу» батырмасын басыңыз.</p>
+                    <img src="k25.png" class="instruction-img" alt="k25.png">
+                    <img src="k26.png" class="instruction-img" alt="k26.png">
+                </div>
+
+                <div style="text-align: right; margin-top: 20px;">
+                    <a href="#step6" class="step-footer-btn">Келесі: Қол қою қадамы →</a>
+                </div>
+            </div>
+
+            <div class="white-box" id="step6">
+                <div class="step-title"><span class="step-label">2.</span><span>Өтінімдерге қол қою (Директор орындауы тиіс)</span></div>
+
+                <div class="step-auth" data-step="1">
+                    <p>Платформаға «Директор» рөлінде кіріп, өтінімге қол қойыңыз.</p>
+                    <p>«Қол қою» батырмасын басып, құжатқа eGov Business QR-коды немесе заңды тұлғаның ЭЦҚ кілті арқылы қол қойыңыз.</p>
+                    <img src="k27.png" class="instruction-img" alt="k27.png">
+                </div>
+
+                <div class="step-auth" data-step="2">
+                    <p>Егер сіз Орындаушының шешімімен келіспесеңіз, «Қайта өңдеуге жіберу» батырмасын басып, қайтару себебін толтырыңыз.</p>
+                    <img src="k28.png" class="instruction-img" alt="k28.png">
+                    <img src="k29.png" class="instruction-img" alt="k29.png">
+                </div>
+
+                <div style="margin-top: 30px; text-align: right;">
+                    <a href="#part3" class="content-next-btn">Келесі: III-бөлімге көшу →</a>
+                </div>
+            </div>
+
+            <div class="part-header-box" id="part3">
+                <h2>👨‍👩‍👦 III-бөлім. Ата-ана тарапынан өтінім беру</h2>
+            </div>
+
+            <div class="white-box">
+                <div class="green-notice">
+                    <p>Бұл бөлімде мектеп қызметкері жалпы түсінуі үшін ата-ананың өтінім беру барысы сипатталған.</p>
+                    <p><b>Назар аударыңыз:</b> Егер ата-ананың өтінімді онлайн беру бойынша сұрақтары туындаса, ол <b>1414</b> нөмірі бойынша Біріңғай байланыс орталығына хабарласуы қажет.</p>
+                </div>
+                
+                <div class="blue-notice">
+                    <p>📹 <b>Видеоның сілтемесі:</b> [Бұл жерге видео сілтемесін қойыңыз]</p>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: right;">
+                    <a href="#questions" class="content-next-btn">Жиі қойылатын сұрақтарды қарау →</a>
+                </div>
+            </div>
+
+            <div class="white-box faq-box" id="questions">
+                <h2 class="faq-title-main">Жиі қойылатын сұрақтар</h2>
+                
+                <h4 class="faq-category-title">Кіру және авторизация</h4>
+                <details>
+                    <div class="accordion" id="authAccordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingAuth1">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAuth1" aria-expanded="true" aria-controls="collapseAuth1">
@@ -352,7 +931,5 @@
 
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
